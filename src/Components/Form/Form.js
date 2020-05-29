@@ -8,7 +8,7 @@ export default class Form extends Component {
         this.state = {
             name: "",
             price: 0,
-            imgurl: ""
+            imgurl: "https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-image_large.png?format=jpg&quality=90&v=1530129081"
         }
     }
 
@@ -37,14 +37,13 @@ export default class Form extends Component {
     }
 
     clearInputs() {
-        document.getElementById('img-url').value = "";
+        document.getElementById('img-url').value = "https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-images-image_large.png?format=jpg&quality=90&v=1530129081";
         document.getElementById('product-name').value = "";
         document.getElementById('price').value = 0
     }
 
     render() {
         return <div className="Form">
-            <h1>Form</h1>
                 <img src={this.state.imgurl} width="80%" height="40%" alt="product-preview" className="product-img" />
                     <label for="img-url" >Image URL:</label>
                         <input type="text" id="img-url" name="img-url" onChange={(e) => {this.imgHandleChange(e)}} ></input>
