@@ -1,26 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
 import './App.css';
+import Dashboard from './Components/Dashboard/Dashboard';
+import Header from './Components/Header/Header';
+import Form from './Components/Form/Form';
+import axios from 'axios';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+export default class App extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      inventory: []
+    }
+
+    this.addNewProduct = this.addNewProduct.bind(this);
+  }
+
+  addNewProduct(newProduct) {
+    axios.post('http://localhost:4050/api/inventory', newProduct)
+    .then(res => {
+      this.setState({
+        inventory: res.data
+      });
+    });
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <Header />
+        <div className="main-content">
+          <Dashboard />
+          <Form />
+        </div>
+      </div>
+    );
+  }
 }
-
-export default App;
